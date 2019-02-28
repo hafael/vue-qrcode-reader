@@ -1,6 +1,7 @@
 import { StreamApiNotSupportedError } from './errors.js'
 import { imageDataFromVideo } from './image-data.js'
 import { hasFired } from './promisify.js'
+import { isNull } from 'util'
 
 class Camera {
 
@@ -16,9 +17,30 @@ class Camera {
   }
 
   getCapabilities () {
-    this.stream.getTracks().forEach(
+    return this.stream.getTracks().forEach(
       track => track.getCapabilities()
     )
+  }
+
+  torch (flag = true) {
+    this.stream.getTracks().forEach(
+      track => track.applyConstraints({advanced: [{torch: flag}]})
+    )
+  }
+
+  zoom (zoom) {
+    const capabilities = this.getCapabilities()
+    if (isNull(zoom) && capabilities.zoom) {
+      this.stream.getTracks().forEach(
+        track => track.applyConstraints({zoom: capabilities.zoom.max})
+                      .catch(e => console.log(e))
+      )
+    } else {
+      this.stream.getTracks().forEach(
+        track => track.applyConstraints({zoom: zoom})
+                      .catch(e => console.log(e))
+      )
+    }
   }
 
   captureFrame () {
