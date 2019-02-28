@@ -146,10 +146,10 @@ export default {
               facingMode: { ideal: 'environment' },
               width: { min: 360, ideal: 640, max: 1920 },
               height: { min: 240, ideal: 480, max: 1080 },
-
-              // overrides properties above if given
-              ...camera,
             },
+
+            // overrides properties above if given
+            ...camera,
           }
         }
       },
@@ -185,6 +185,8 @@ export default {
         // stream.
         if (this.destroyed) {
           this.cameraInstance.stop()
+        } else {
+          this.$emit('capabilitiesReady', this.cameraInstance.getCapabilities())
         }
       }
     },
@@ -206,7 +208,6 @@ export default {
 
     beforeResetCamera () {
       if (this.cameraInstance !== null) {
-        this.cameraInstance.getCapabilities()
         this.cameraInstance.stop()
         this.cameraInstance = null
       }
