@@ -34,7 +34,9 @@ class Camera {
       track => {
         const capabilities = track.getCapabilities()
         if (capabilities.torch) {
-          track.applyConstraints({advanced: [{torch: flag}]})
+          track.applyConstraints({advanced: [{torch: flag}]}).then(function () {
+            console.log('CameraSetTorch', track.getConstraints())
+          })
         }
       }
     )
@@ -45,7 +47,9 @@ class Camera {
       track => {
         const capabilities = track.getCapabilities()
         if (capabilities.zoom) {
-          track.applyConstraints({advanced: [{zoom: zoom}]})
+          track.applyConstraints({advanced: [{zoom: zoom}]}).then(function () {
+            console.log('CameraSetZoom', track.getConstraints())
+          })
         }
       }
     )

@@ -166,10 +166,12 @@ export default {
     },
 
     torch (torch) {
+      console.log('onToggleTorch', torch)
       this.toggleTorch(torch)
     },
 
     zoom (zoom) {
+      console.log('onToggleZoom', zoom)
       if (isBoolean(zoom)) {
         this.changeZoom()
       } else {
