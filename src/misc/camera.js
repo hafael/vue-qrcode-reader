@@ -20,6 +20,10 @@ class Camera {
     return this.stream.getTracks()
   }
 
+  getVideoTracks () {
+    return this.stream.getVideoTracks()
+  }
+
   getCapabilities () {
     return this.getTracks().forEach(
       track => track.getCapabilities()
