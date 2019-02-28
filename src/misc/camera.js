@@ -15,6 +15,12 @@ class Camera {
     )
   }
 
+  getCapabilities () {
+    this.stream.getTracks().forEach(
+      track => track.getCapabilities()
+    )
+  }
+
   captureFrame () {
     return imageDataFromVideo(this.videoEl)
   }

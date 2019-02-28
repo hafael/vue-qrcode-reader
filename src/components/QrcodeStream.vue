@@ -206,6 +206,7 @@ export default {
 
     beforeResetCamera () {
       if (this.cameraInstance !== null) {
+        this.cameraInstance.getCapabilities()
         this.cameraInstance.stop()
         this.cameraInstance = null
       }
