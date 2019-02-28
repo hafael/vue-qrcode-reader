@@ -16,14 +16,18 @@ class Camera {
     )
   }
 
+  getTracks () {
+    return this.stream.getTracks()
+  }
+
   getCapabilities () {
-    return this.stream.getTracks().forEach(
+    return this.getTracks().forEach(
       track => track.getCapabilities()
     )
   }
 
   torch (flag = true) {
-    this.stream.getTracks().forEach(
+    this.getTracks().forEach(
       track => track.applyConstraints({advanced: [{torch: flag}]})
     )
   }

@@ -186,7 +186,7 @@ export default {
         if (this.destroyed) {
           this.cameraInstance.stop()
         } else {
-          this.$emit('capabilitiesReady', this.cameraInstance.getCapabilities())
+          this.$emit('capabilitiesReady', this.cameraInstance.getTracks())
         }
       }
     },
