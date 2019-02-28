@@ -57,6 +57,16 @@ export default {
       type: [Function, Boolean],
       default: true,
     },
+
+    zoom: {
+      type: [Number, Boolean],
+      default: false,
+    },
+
+    torch: {
+      type: [Boolean],
+      default: false,
+    },
   },
 
   data () {
@@ -153,6 +163,18 @@ export default {
           }
         }
       },
+    },
+
+    torch (torch) {
+      this.toggleTorch(torch)
+    },
+
+    zoom (zoom) {
+      if (isBoolean(zoom)) {
+        this.changeZoom()
+      } else if (isObject(zoom)) {
+        this.changeZoom(zoom)
+      }
     },
 
     constraints () {
@@ -292,6 +314,18 @@ export default {
       window.requestAnimationFrame(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
       })
+    },
+
+    toggleTorch (torch) {
+      if (this.cameraInstance !== null) {
+        this.cameraInstance.torch(torch)
+      }
+    },
+
+    changeZoom (zoom) {
+      if (this.cameraInstance !== null) {
+        this.cameraInstance.zoom(zoom)
+      }
     },
 
   },
