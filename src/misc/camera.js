@@ -30,7 +30,7 @@ class Camera {
   }
 
   torch (flag = true) {
-    this.getVideoTracks().forEach(
+    this.stream.getVideoTracks().forEach(
       track => {
         const capabilities = track.getCapabilities()
         if (capabilities.torch) {
@@ -41,7 +41,7 @@ class Camera {
   }
 
   zoom (zoom = 100) {
-    this.getVideoTracks().forEach(
+    this.stream.getVideoTracks().forEach(
       track => {
         const capabilities = track.getCapabilities()
         if (capabilities.zoom) {

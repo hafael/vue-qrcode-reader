@@ -172,7 +172,7 @@ export default {
     zoom (zoom) {
       if (isBoolean(zoom)) {
         this.changeZoom()
-      } else if (isObject(zoom)) {
+      } else {
         this.changeZoom(zoom)
       }
     },
